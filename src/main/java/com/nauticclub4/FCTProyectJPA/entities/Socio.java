@@ -1,5 +1,6 @@
 package com.nauticclub4.FCTProyectJPA.entities;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -22,7 +23,7 @@ import lombok.ToString;
 @ToString
 @Entity
 @Table(name = "socio")
-public class Socio {
+public class Socio implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,7 +46,7 @@ public class Socio {
 	// @OneToMany(mappedBy="socio", cascade=CascadeType.ALL, orphanRemoval=true)
 	// private List<Barco> barcos;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Barco> barcos;
 
 }

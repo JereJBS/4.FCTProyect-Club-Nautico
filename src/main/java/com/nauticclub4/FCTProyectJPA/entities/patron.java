@@ -1,5 +1,7 @@
 package com.nauticclub4.FCTProyectJPA.entities;
 
+import java.io.Serializable;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -17,15 +19,15 @@ import lombok.ToString;
 @RequiredArgsConstructor
 @ToString
 @Entity
-@Table(name = "patron")
-public class Patron {
+@Table(name = "patron")	
+public class Patron implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "name", nullable = false)
-	private String name;
+	@Column(name = "nombre", nullable = false)
+	private String nombre;
 
 	@Column(name = "direccion", nullable = false)
 	private String direccion;

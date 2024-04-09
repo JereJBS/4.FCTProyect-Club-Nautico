@@ -45,7 +45,7 @@ public class Barco implements Serializable{
 	private float cuota;
 
 	@ManyToOne
-	@JoinColumn(name="socio_id", nullable=false)
+	@JoinColumn(name="socio_id")
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JsonIgnore
 	private Socio socio;
