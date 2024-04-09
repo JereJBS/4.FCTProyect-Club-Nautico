@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Entity
 @Table(name = "patron")
-public class patron {
+public class Patron {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
