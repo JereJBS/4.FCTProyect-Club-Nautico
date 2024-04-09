@@ -70,6 +70,12 @@ public class BarcoController {
 		return dataBaseService.agregarSocio(idBarco, idSocio);
 	}
 
+    // public Barco agregarPatron(@PathVariable long idBarco, @PathVariable long idSocio){
+    //     return dataBaseService.agregarPatron(null);
+    // }
+
+
+
     // @GetMapping("/barcos")
     // public List<Barco> getAllBarcos(){
     //     return barcoRepository.findAll();

@@ -123,6 +123,40 @@ public class DataBaseService {
 		patronRepository.deleteById(id);
 	}
 
+    public Socio findSocioById(Long id) {
+		return socioRepository.findById(id).get();
+	}
+
+    public List<Socio> findAllSocios(){
+		return socioRepository.findAll();
+	}
+
+    public ResponseEntity<String> crearSocio(Socio socio) {
+		socioRepository.save(socio);
+		return ResponseEntity.status(HttpStatus.CREATED).body("Socio creado");
+	}
+
+    public void eliminarSocio(Long id) {
+		socioRepository.deleteById(id);
+	}
+
+    public Salidas findSalidaById(Long id) {
+		return salidasRepository.findById(id).get();
+	}
+
+    public List<Salidas> findAllSalidas(){
+		return salidasRepository.findAll();
+	}
+
+    public ResponseEntity<String> crearSalida(Salidas salida) {
+		salidasRepository.save(salida);
+		return ResponseEntity.status(HttpStatus.CREATED).body("Salida creada");
+	}
+
+    public void eliminarSalida(Long id) {
+		salidasRepository.deleteById(id);
+	}
+
     // public String actualizarPatron(Long id, Barco patronActualizado){
     //     Patron patron = patronRepository.findById(id).get();
     //     StringBuilder nuevosDatos = new StringBuilder();
