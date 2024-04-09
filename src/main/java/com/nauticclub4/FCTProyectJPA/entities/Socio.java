@@ -31,7 +31,7 @@ public class Socio implements Serializable{
 	
 
 	@Column(name = "nombre", nullable = false)
-	private String name;
+	private String nombre;
 
 	@Column(name = "direccion", nullable = false)
 	private String direccion;
