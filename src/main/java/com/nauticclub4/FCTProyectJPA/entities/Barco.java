@@ -55,9 +55,4 @@ public class Barco {
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JsonIgnore
 	private Patron patron;
-
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "salidasId", nullable = false)
-	@JsonIgnore
-	private Salidas salidas;
 }

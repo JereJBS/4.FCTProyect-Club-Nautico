@@ -24,6 +24,12 @@ public class Patron {
 	@Column(name = "name", nullable = false)
 	private String name;
 
-	@Column(name = "dni", nullable = false)
-	private String dni;
+	@Column(name = "direccion", nullable = false)
+	private String direccion;
+
+	@Column(name = "telefono", nullable = false)
+	private String telefono;
+
+	@Column(name = "email", nullable = false)
+	private String email;
 }
