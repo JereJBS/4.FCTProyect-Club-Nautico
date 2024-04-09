@@ -1,19 +1,16 @@
 package com.nauticclub4.FCTProyectJPA.entities;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +21,7 @@ import lombok.ToString;
 @ToString
 @Entity
 @Table(name = "Barco")
-public class Barco {
+public class Barco implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,17 +39,24 @@ public class Barco {
 	@Column(name = "cuota", nullable = false)
 	private float cuota;
 
-
-
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "socioId", nullable = false)
-	@OnDelete(action = OnDeleteAction.CASCADE)
+	@ManyToOne
+	@JoinColumn(name="socio_id", nullable=false)
 	@JsonIgnore
 	private Socio socio;
+	
+	
 
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "patronId", nullable = false)
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JsonIgnore
-	private Patron patron;
+
+
+	// @OneToMany(fetch = FetchType.LAZY)
+	// @JoinColumn(name = "socioId", nullable = false)
+	// @OnDelete(action = OnDeleteAction.CASCADE)
+	// @JsonIgnore
+	// private Socio socio;
+
+	// @OneToMany(fetch = FetchType.LAZY)
+	// @JoinColumn(name = "patronId", nullable = false)
+	// @OnDelete(action = OnDeleteAction.CASCADE)
+	// @JsonIgnore
+	// private Patron patron;
 }
