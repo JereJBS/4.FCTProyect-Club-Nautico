@@ -60,8 +60,8 @@ public class BarcoController {
 		return ResponseEntity.ok("Borrado");
 	}
 
-    @PutMapping("/{idBarco}")
-	public String modificarBarco(@PathVariable long idBarco,@RequestBody Barco barco) {
+    @PutMapping("/barcos/{idBarco}")
+	public Barco modificarBarco(@PathVariable long idBarco,@RequestBody Barco barco) {
 		return dataBaseService.actualizarBarco(idBarco, barco);
 	}
 

@@ -64,32 +64,22 @@ public class DataBaseService {
         barcoRepository.deleteById(id);
     }
 
-    public String actualizarBarco(Long id, Barco barcoActualizado){
+    public Barco actualizarBarco(Long id, Barco barcoActualizado){
         Barco barco = barcoRepository.findById(id).get();
-        StringBuilder nuevosDatos = new StringBuilder();
+
         if ((barcoActualizado.getNMatricula()!= null)) {
 			barco.setNMatricula(barcoActualizado.getNMatricula());
-			nuevosDatos.append("modificado numero de Matricula ");
-			System.out.println("1");
 		}
 		if (!(barcoActualizado.getNombre().isEmpty() || barcoActualizado.getNombre()== null)) {
 			barco.setNombre(barcoActualizado.getNombre());
-			nuevosDatos.append("nombre modificado ");
-			System.out.println("2");
 		}
 		if (barcoActualizado.getSocio()!= null) {
 			barco.setSocio(barcoActualizado.getSocio());
-			nuevosDatos.append("socio modificado,");
-			System.out.println("3");
 		}
 		if (barcoActualizado.getSalida()!= null) {
 			barco.setSalida(barcoActualizado.getSalida());
-			nuevosDatos.append("salida modificada ");
-			System.out.println("4");
 		}
-
-        barcoRepository.save(barco);
-        return nuevosDatos.toString();
+        return barcoRepository.save(barco);
     }
 
     public Barco agregarSocio(Long id_barco, Long id_socio){
@@ -144,6 +134,23 @@ public class DataBaseService {
 		return salidasRepository.findById(id).get();
 	}
 
+	public Socio actualizarSocio(Long id, Socio socioActualizado){
+        Socio socio = socioRepository.findById(id).get();
+        if((socioActualizado.getNombre() != null)){
+			socio.setNombre(socioActualizado.getNombre());
+		}
+		if((socioActualizado.getDireccion() != null)){
+			socio.setDireccion(socioActualizado.getDireccion());
+		}
+		if((socioActualizado.getTelefono() != null)){
+			socio.setTelefono(socioActualizado.getTelefono());
+		}
+		if((socioActualizado.getEmail() != null)){
+			socio.setEmail(socioActualizado.getEmail());
+		}
+		return socioRepository.save(socio);
+    }
+
     public List<Salidas> findAllSalidas(){
 		return salidasRepository.findAll();
 	}
@@ -157,12 +164,22 @@ public class DataBaseService {
 		salidasRepository.deleteById(id);
 	}
 
-    // public String actualizarPatron(Long id, Barco patronActualizado){
-    //     Patron patron = patronRepository.findById(id).get();
-    //     StringBuilder nuevosDatos = new StringBuilder();
-    //     //nombre, direccion, telefono, email, salida
-    //     if(())
-    // }
+    public Patron actualizarPatron(Long id, Patron patronActualizado){
+        Patron patron = patronRepository.findById(id).get();
+        if((patronActualizado.getNombre() != null)){
+			patron.setNombre(patronActualizado.getNombre());
+		}
+		if((patronActualizado.getDireccion() != null)){
+			patron.setDireccion(patronActualizado.getDireccion());
+		}
+		if((patronActualizado.getTelefono() != null)){
+			patron.setTelefono(patronActualizado.getTelefono());
+		}
+		if((patronActualizado.getEmail() != null)){
+			patron.setEmail(patronActualizado.getEmail());
+		}
+		return patronRepository.save(patron);
+    }
 
 
 }

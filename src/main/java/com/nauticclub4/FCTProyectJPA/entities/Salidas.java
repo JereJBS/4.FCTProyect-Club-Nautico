@@ -45,6 +45,6 @@ public class Salidas implements Serializable{
 
 	@JsonIgnore
     @OneToOne
-    @JoinColumn(name = "patron")
+    @JoinColumn(name = "patron", nullable = false)
     private Patron patron;
 }
