@@ -85,7 +85,10 @@ public class DataBaseService {
     public Barco agregarSocio(Long id_barco, Long id_socio){
         Barco barco = barcoRepository.findById(id_barco).get();
 		Socio socio = socioRepository.findById(id_socio).get();
+		List<Barco> barcos = socio.getBarcos();
+		barcos.add(barco);
 		barco.setSocio(socio);
+		socio.setBarcos(barcos);
 		return barcoRepository.save(barco);
     }
 
@@ -180,6 +183,14 @@ public class DataBaseService {
 		}
 		return patronRepository.save(patron);
     }
+
+	public void agregarSalidaPatron(Long id_salida, Long id_patron) {
+		Salidas salida = salidasRepository.findById(id_salida).get();
+		Patron patron = patronRepository.findById(id_patron).get();
+		List<Salidas> salidas = patron.getSalidas();
+		salidas.add(salida);
+		salida.setPatron(patron);
+	}
 
 
 }

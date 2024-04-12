@@ -27,7 +27,7 @@ public class SocioController {
 		return dataBaseService.findAllSocios();
 	}
 
-    @GetMapping("/{idSocio}")
+    @GetMapping("/socios/{idSocio}")
 	public ResponseEntity<Socio> findById(@PathVariable long idSocio) {
 		return ResponseEntity.ok(dataBaseService.findSocioById(idSocio));
 	}
@@ -37,7 +37,7 @@ public class SocioController {
 		return dataBaseService.crearSocio(socio);
 	}
 
-    @DeleteMapping("/{idSocio}")
+    @DeleteMapping("/socios/{idSocio}")
 	public ResponseEntity<String> borrar(@PathVariable long idSocio) {
 		dataBaseService.eliminarSocio(idSocio);
 		return ResponseEntity.ok("Socio borrado");

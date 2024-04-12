@@ -1,7 +1,7 @@
 package com.nauticclub4.FCTProyectJPA.entities;
 
 import java.io.Serializable;
-import java.util.Date;
+// import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -12,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -34,8 +35,8 @@ public class Salidas implements Serializable{
 	// @JsonIgnore
 	// Barco barco;
 
-	@Column(name = "fecha", nullable = false)
-	private Date fechaHora;
+	@Column(name = "fecha")
+	private String fechaHora;
 
 	@Column(name = "destino", nullable = false)
 	private String destino;
@@ -44,7 +45,7 @@ public class Salidas implements Serializable{
     private Barco barco;
 
 	@JsonIgnore
-    @OneToOne
-    @JoinColumn(name = "patron", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "patron", referencedColumnName = "id")
     private Patron patron;
 }

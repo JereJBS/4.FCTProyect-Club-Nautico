@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,7 +29,7 @@ public class PatronController {
 		return dataBaseService.findAllPatron();
 	}
 
-    @GetMapping("/{idPatron}")
+    @GetMapping("/patrones/{idPatron}")
 	public ResponseEntity<Patron> findById(@PathVariable long idPatron) {
 		return ResponseEntity.ok(dataBaseService.findPatronById(idPatron));
 	}
@@ -39,11 +40,16 @@ public class PatronController {
 		return ResponseEntity.status(HttpStatus.CREATED).body("Creado el patron");
 	}
 
-    @DeleteMapping("/{idPatron}")
+    @DeleteMapping("/patrones/{idPatron}")
 	public ResponseEntity<String> borrar(@PathVariable long idPatron) {
 		dataBaseService.eliminarPatron(idPatron);
 		return ResponseEntity.ok("Patron Borrado");
 	}
 
+	@PutMapping("/patrones/{idSalida}/{idPatron}")
+	public ResponseEntity<String> agregarSalidaPatron(@PathVariable long idSalida, @PathVariable long idPatron){
+		dataBaseService.agregarSalidaPatron(idSalida, idPatron);
+		return ResponseEntity.ok("Se añadió una salida a un patron");
+	}
     
 }

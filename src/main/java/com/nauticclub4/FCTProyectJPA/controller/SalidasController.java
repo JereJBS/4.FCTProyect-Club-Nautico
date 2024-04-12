@@ -27,7 +27,7 @@ public class SalidasController {
 		return dataBaseService.findAllSalidas();
 	}
 
-    @GetMapping("/{idSalida}")
+    @GetMapping("/salidas/{idSalida}")
 	public ResponseEntity<Salidas> findById(@PathVariable long idBarco) {
 		return ResponseEntity.ok(dataBaseService.findSalidaById(idBarco));
 	}
@@ -37,7 +37,7 @@ public class SalidasController {
 		return dataBaseService.crearSalida(salida);
 	}
 
-    @DeleteMapping("/{idSalida}")
+    @DeleteMapping("/salidas/{idSalida}")
 	public ResponseEntity<String> borrar(@PathVariable long idSalida) {
 		dataBaseService.eliminarSalida(idSalida);
 		return ResponseEntity.ok("Salida borrada");

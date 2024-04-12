@@ -44,7 +44,7 @@ public class BarcoController {
 		return dataBaseService.findAll();
 	}
 
-    @GetMapping("/{idBarco}")
+    @GetMapping("/barcos/{idBarco}")
 	public ResponseEntity<Barco> findById(@PathVariable long idBarco) {
 		return ResponseEntity.ok(dataBaseService.findById(idBarco));
 	}
@@ -54,7 +54,7 @@ public class BarcoController {
 		return dataBaseService.crearBarco(barco);
 	}
 
-    @DeleteMapping("/{idBarco}")
+    @DeleteMapping("/barcos/{idBarco}")
 	public ResponseEntity<String> borrarBarco(@PathVariable long id) {
 		dataBaseService.eliminarBarco(id);
 		return ResponseEntity.ok("Borrado");
@@ -70,9 +70,12 @@ public class BarcoController {
 		return dataBaseService.agregarSocio(idBarco, idSocio);
 	}
 
-    // public Barco agregarPatron(@PathVariable long idBarco, @PathVariable long idSocio){
-    //     return dataBaseService.agregarPatron(null);
-    // }
+    @PutMapping("/agregarSalida/{idBarco}/{idSalida}")
+	public Barco agregarSalida(@PathVariable long idBarco , @PathVariable long idSalida) {
+		return dataBaseService.agregarSalida(idBarco, idSalida);
+	}
+
+ 
 
 
 
