@@ -1,6 +1,7 @@
 package com.nauticclub4.FCTProyectJPA.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -14,8 +15,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-// import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
+
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -50,23 +51,8 @@ public class Barco implements Serializable{
 	@JsonIgnore
 	private Socio socio;
 	
-	@OneToOne
+	@OneToMany
     @JoinColumn(name = "salida_id")
     @JsonIgnore
-    private Salidas salida;
-	
-
-
-
-	// @OneToMany(fetch = FetchType.LAZY)
-	// @JoinColumn(name = "socioId", nullable = false)
-	// @OnDelete(action = OnDeleteAction.CASCADE)
-	// @JsonIgnore
-	// private Socio socio;
-
-	// @OneToMany(fetch = FetchType.LAZY)
-	// @JoinColumn(name = "patronId", nullable = false)
-	// @OnDelete(action = OnDeleteAction.CASCADE)
-	// @JsonIgnore
-	// private Patron patron;
+    private List<Salidas> salida;
 }

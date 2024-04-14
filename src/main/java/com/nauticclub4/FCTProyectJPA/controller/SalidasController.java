@@ -3,7 +3,7 @@ package com.nauticclub4.FCTProyectJPA.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,18 +28,17 @@ public class SalidasController {
 	}
 
     @GetMapping("/salidas/{idSalida}")
-	public ResponseEntity<Salidas> findById(@PathVariable long idBarco) {
-		return ResponseEntity.ok(dataBaseService.findSalidaById(idBarco));
+	public Salidas findById(@PathVariable long idBarco) {
+		return dataBaseService.findSalidaById(idBarco);
 	}
 
-    @PostMapping("/salidas")
-	public ResponseEntity<String> postBarco(@RequestBody Salidas salida){
-		return dataBaseService.crearSalida(salida);
+    @PostMapping("/Crearsalidas")
+	public Salidas postSalida(@RequestBody Salidas salida, Long idPatron){
+		return dataBaseService.crearSalida(salida, idPatron);
 	}
 
     @DeleteMapping("/salidas/{idSalida}")
-	public ResponseEntity<String> borrar(@PathVariable long idSalida) {
-		dataBaseService.eliminarSalida(idSalida);
-		return ResponseEntity.ok("Salida borrada");
+	public String borrar(@PathVariable long idSalida) {
+		return dataBaseService.eliminarSalida(idSalida);
 	}
 }

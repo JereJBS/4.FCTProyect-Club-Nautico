@@ -14,27 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nauticclub4.FCTProyectJPA.entities.Barco;
-// import com.nauticclub4.FCTProyectJPA.repository.BarcoRepository;
-// import com.nauticclub4.FCTProyectJPA.repository.PatronRepository;
-// import com.nauticclub4.FCTProyectJPA.repository.SalidasRepository;
-// import com.nauticclub4.FCTProyectJPA.repository.SocioRepository;
+
 import com.nauticclub4.FCTProyectJPA.service.DataBaseService;
 
 @RestController
 @RequestMapping("/api/v1")
 public class BarcoController {
-
-    // @Autowired
-    // BarcoRepository barcoRepository;
-
-    // @Autowired
-    // PatronRepository patronRepository;
-
-    // @Autowired
-    // SalidasRepository salidasRepository;
-
-    // @Autowired
-    // SocioRepository socioRepository;
 
     @Autowired
     DataBaseService dataBaseService;
@@ -45,8 +30,8 @@ public class BarcoController {
 	}
 
     @GetMapping("/barcos/{idBarco}")
-	public ResponseEntity<Barco> findById(@PathVariable long idBarco) {
-		return ResponseEntity.ok(dataBaseService.findById(idBarco));
+	public Barco findById(@PathVariable long idBarco) {
+		return dataBaseService.findById(idBarco);
 	}
 
     @PostMapping("/barcos")
@@ -55,9 +40,8 @@ public class BarcoController {
 	}
 
     @DeleteMapping("/barcos/{idBarco}")
-	public ResponseEntity<String> borrarBarco(@PathVariable long id) {
-		dataBaseService.eliminarBarco(id);
-		return ResponseEntity.ok("Borrado");
+	public String borrarBarco(@PathVariable long id) {
+		return dataBaseService.eliminarBarco(id);
 	}
 
     @PutMapping("/barcos/{idBarco}")
@@ -74,24 +58,4 @@ public class BarcoController {
 	public Barco agregarSalida(@PathVariable long idBarco , @PathVariable long idSalida) {
 		return dataBaseService.agregarSalida(idBarco, idSalida);
 	}
-
- 
-
-
-
-    // @GetMapping("/barcos")
-    // public List<Barco> getAllBarcos(){
-    //     return barcoRepository.findAll();
-    // }
-
-    // @GetMapping("/barcos/{barcoId}")
-    // public Barco getBarco(@PathVariable(name = "barcoId") Long barcoId){
-    //     return barcoRepository.findById(barcoId).get();
-    // }
-
-    // @PostMapping("/barcos")
-    // public String addBarco(Barco barco){
-    //     dataBaseService.saveBarco(barco);
-    //     return "Barco creado correctamente";
-    // }
 }

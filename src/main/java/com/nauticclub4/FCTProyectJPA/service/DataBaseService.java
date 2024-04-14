@@ -1,5 +1,6 @@
 package com.nauticclub4.FCTProyectJPA.service;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,22 +32,6 @@ public class DataBaseService {
     @Autowired
     SocioRepository socioRepository;
 
-    // public Barco saveBarco(Barco barco){
-    //     return barcoRepository.save(barco);
-    // }
-
-    // public Patron savePatron(Patron patron){
-    //     return patronRepository.save(patron);
-    // }
-
-    // public Salidas saveSalidas(Salidas salida){
-    //     return salidasRepository.save(salida);
-    // }
-
-    // public Socio saveSocio(Socio socio){
-    //     return socioRepository.save(socio);
-    // }
-
     public Barco findById(Long id) {
 		return barcoRepository.findById(id).get();
 	}
@@ -60,8 +45,9 @@ public class DataBaseService {
 		return ResponseEntity.status(HttpStatus.CREATED).body("Barco creado");
 	}
 
-    public void eliminarBarco(Long id){
+    public String eliminarBarco(Long id){
         barcoRepository.deleteById(id);
+		return "Barco borrado";
     }
 
     public Barco actualizarBarco(Long id, Barco barcoActualizado){
@@ -93,10 +79,13 @@ public class DataBaseService {
     }
 
     public Barco agregarSalida(Long id_barco, Long id_salida){
-        Barco barco = barcoRepository.findById(id_barco).get();
-        Salidas salida = salidasRepository.findById(id_salida).get();
-        barco.setSalida(salida);
-        return barcoRepository.save(barco);
+		Barco barco = barcoRepository.findById(id_barco).get();
+		Salidas salida = salidasRepository.findById(id_salida).get();
+		List<Salidas> salidas = barco.getSalida();
+		salidas.add(salida);
+		barco.setSalida(salidas);
+		salida.setBarco(barco);
+		return barcoRepository.save(barco);
     }
 
 
@@ -108,12 +97,14 @@ public class DataBaseService {
 		return patronRepository.findAll();
 	}
 
-    public void agregarPatron(Patron patron) {
+    public String agregarPatron(Patron patron) {
 		patronRepository.save(patron);
+		return "Patron creado";
 	}
 	
-	public void eliminarPatron(Long id) {
+	public String eliminarPatron(Long id) {
 		patronRepository.deleteById(id);
+		return "Patron eliminado";
 	}
 
     public Socio findSocioById(Long id) {
@@ -129,8 +120,9 @@ public class DataBaseService {
 		return ResponseEntity.status(HttpStatus.CREATED).body("Socio creado");
 	}
 
-    public void eliminarSocio(Long id) {
+    public String eliminarSocio(Long id) {
 		socioRepository.deleteById(id);
+		return "Socio eliminado";
 	}
 
     public Salidas findSalidaById(Long id) {
@@ -158,13 +150,17 @@ public class DataBaseService {
 		return salidasRepository.findAll();
 	}
 
-    public ResponseEntity<String> crearSalida(Salidas salida) {
-		salidasRepository.save(salida);
-		return ResponseEntity.status(HttpStatus.CREATED).body("Salida creada");
+    public Salidas crearSalida(Salidas salida, Long idPatron) {
+		Patron patron = patronRepository.findById(idPatron).get();
+		List<Salidas> salidasTotales= salidasRepository.findAll();
+		salidasTotales.add(salida);
+		patron.setSalidas(salidasTotales);
+		return salidasRepository.save(salida);
 	}
 
-    public void eliminarSalida(Long id) {
+    public String eliminarSalida(Long id) {
 		salidasRepository.deleteById(id);
+		return "Se elimino la salida";
 	}
 
     public Patron actualizarPatron(Long id, Patron patronActualizado){
@@ -184,12 +180,14 @@ public class DataBaseService {
 		return patronRepository.save(patron);
     }
 
-	public void agregarSalidaPatron(Long id_salida, Long id_patron) {
+	public Salidas agregarSalidaPatron(Long id_salida, Long id_patron) {
 		Salidas salida = salidasRepository.findById(id_salida).get();
 		Patron patron = patronRepository.findById(id_patron).get();
 		List<Salidas> salidas = patron.getSalidas();
 		salidas.add(salida);
+		patron.setSalidas(salidas);
 		salida.setPatron(patron);
+		return salidasRepository.save(salida);
 	}
 
 

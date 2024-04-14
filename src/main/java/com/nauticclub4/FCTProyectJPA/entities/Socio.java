@@ -3,8 +3,6 @@ package com.nauticclub4.FCTProyectJPA.entities;
 import java.io.Serializable;
 import java.util.List;
 
-// import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -41,10 +39,6 @@ public class Socio implements Serializable{
 
 	@Column(name = "email", nullable = false)
 	private String email;
-
-	// @JsonIgnore
-	// @OneToMany(mappedBy="socio", cascade=CascadeType.ALL, orphanRemoval=true)
-	// private List<Barco> barcos;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Barco> barcos;
